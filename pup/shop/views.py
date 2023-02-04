@@ -166,11 +166,13 @@ def Sellerpage(request):
     Cat = category.objects.all()
     for x in CU:
         U_seller = x.user_buyer
-    dataJSON = dumps(U_seller)
     User_product = Product.objects.filter(product_seller = un) # Products uploaded by the user
     print(User_product)
-    params = {'data': dataJSON, 'Usp': User_product, 'Buss_user': BU, 'cat': Cat}
-    return render(request, 'shop/Sellerpage.html', params)
+    params = {'user': un, 'CU': CU, 'Usp': User_product, 'Buss_user': BU, 'cat': Cat}
+    if U_seller == True:
+        return render(request, 'shop/Profile.html', params)
+    else:
+        return render(request, 'shop/Sellerpage.html', params)
 
 def Cartpage(request):
     un = request.user.id
