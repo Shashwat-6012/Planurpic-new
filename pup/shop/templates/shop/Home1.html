@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'shop/Homecss.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/form1.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/footer.css' %}">
+
+    <title>Home</title>
+    <style>
+      body {
+        display: grid;
+        grid-template-areas: 
+        'imgcontainer imgcontainer imgcontainer imgcontainer'
+        'navbar navbar navbar navbar'
+        'container1 container1 container1 container1'
+        'cc cc cc cc'
+        'textanimation textanimation textanimation textanimation'
+        'brand_container brand_container brand_container brand_container'
+        'footer footer footer footer';
+      }
+      .infotab {
+          display: grid;
+          grid-template-areas: 
+          'hv hv hv hv'
+          'hc hc hc hc';
+          width: 60vw;
+          height: 210px;
+          /* border: 1px solid black; */
+          margin: 2px 40px;
+          border-radius: 10px;
+        }
+        .headervalue {
+          /* background-color: aqua; */
+          display: grid;
+          grid-area: hv;
+          width: 59vw;
+          /* border-bottom: 1px solid black; */
+          height: 100px;
+          margin: 0px 6px;
+          grid-template-areas: 'st dt ft';
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        .headercontainers {
+          display: none;
+          grid-area: hc;
+          width: 59vw;
+          height: 110px;
+          margin: 0px 6px;
+          border: 3px solid rgb(231, 233, 235);;
+          border-top: 6px solid aqua;
+        }
+        #Searchtab {
+          display: block;
+        }
+        .tablinks {
+          background-color: rgb(231, 233, 235);
+          width: 200px;
+          height: 50px;
+          margin: 50px 34px;
+          text-align: center;
+          text-decoration: none;
+          color: black;
+          /* border: 1px solid rgb(90, 86, 86); */
+          margin-bottom: 0px;
+          border-bottom: none;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+        .tablinks.active{
+          background-color: aqua;
+          color: whitesmoke;
+        }
+        #searchtab{
+          grid-area: st;
+          /* border-right: 1px solid black; */
+        }
+        #searchtab h1 {
+          margin-left: 6px;
+          display: inline-block;
+          width: 55px;
+          height: 35px;
+          font-size: 20px;
+        }
+        #desttab{
+          grid-area: dt;
+          /* border-right: 1px solid black; */
+        }
+        #desttab h1 {
+          margin-left: 6px;
+          display: inline-block;
+          width: 81px;
+          height: 35px;
+          font-size: 20px;
+        }
+        #featuretab{
+          grid-area: ft;
+        }
+        #featuretab h1 {
+          margin-left: 6px;
+          display: inline-block;
+          width: 55px;
+          height: 35px;
+          font-size: 20px;
+        }
+        .inner_header{
+          display: inline-block;
+          width: 22vw;
+          height: 65px;
+          border: 1px solid rgb(189 189 189);
+          border-collapse: collapse;
+          text-align: center;
+          margin: 22px 2px;
+        }
+        .inner_header:hover{
+          background-color: aqua;
+        }
+        .inner_header h1{
+          width: 19vw;
+          font-size: 25px;
+          margin: 15px 2px;
+        }
+        #ih_1{
+          margin-left: 100px;
+          margin-right: 0px;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          border-right: none;
+        }
+        #ih_2{
+          margin-left: -4px;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+        .leftcont{
+          display: inline-block;
+          margin: 5px 15px;
+          border: 1px solid black;
+          width: 20vw;
+          height: 15vh;
+        }
+        .rightcont{
+          display: none;
+          margin: 2px 2px;
+          border: 1px solid black;
+          width: 35vw;
+          height: 15vh;
+        }
+        #rc1{
+          display: inline-block;
+        }
+        .d-lanchor{
+          display: block;
+          text-decoration: none;
+          text-align: center;
+          margin: 7px 2px;
+          font-size: 17px;
+          font-weight: 500;
+          color: black;
+        }
+        .dropdown-item {
+          font-size: 13px;
+        }
+        .textbox2{
+          position: absolute;
+          top: 725px;
+          left: 100px;
+          margin: 10px;
+        }
+        .btn-group {
+          padding: 0px;
+          margin-right: 430px;
+        }
+    </style>
+</head>
+<body>
+  {% load static %}
+
+  {% for message in messages %}
+      <div id = "mssg" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="z-index: 2;">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  {% endfor %}
+  
+  <div class="imgcontainer">
+    <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="true" style = "height: 100vh;">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src ='{%static "shop/slide1.jpg" %}' class="d-block w-100" alt="..."  style = "height: 100vh;">
+        </div>
+        <div class="carousel-item">
+          <img src ='{%static "shop/Carousel2.jpg" %}' class="d-block w-100" alt="..." style = "height: 100vh;">
+        </div>
+        <div class="carousel-item">
+          <img src ='{%static "shop/Carousel3.jpg" %}' class="d-block w-100" alt="..." style = "height: 100vh;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+    <nav class="navbar navbar-expand-lg bg-dark" id = "navbar" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style = "color: white">Planurpic</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/shop">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+              <button style="background-color: #070617; border: none;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome {{request.user.first_name}}
+              </button>
+              <div id = "drop_container" class="dropdown-menu">
+                <li><a style = "font-size: 25px;" class="dropdown-item" href="#">Your Account</a></li>
+                <li><a class="dropdown-item" href="#">Your Orders</a></li>
+                <li><a class="dropdown-item" href="#">Your Wish List</a></li>
+                <li><a class="dropdown-item" href="cart">Your Cart</a></li>
+                <li><a class="dropdown-item" href="Sell">Your Seller Account</a></li>
+                <li><a class="dropdown-item" href="logout">signout</a></li>
+              </div>
+            </div>
+            {% else %}
+            <li class="nav-item">
+              <button type="button" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Signup
+              </button>
+            </li>
+            <li class="nav-item dropdown">
+              <div class="dropdown">
+                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                  Login
+                </button>
+                <form  action = "login" method = "post" class="dropdown-menu p-4">
+                  <div class="mb-3">
+                    <label for="exampleDropdownFormEmail2" class="form-label">username</label>
+                    <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Username" name="loginusername">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" name="loginpassword">
+                  </div>
+                  <div class="mb-3">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                      <label class="form-check-label" for="dropdownCheck2">
+                        Remember me
+                      </label>
+                    </div>
+                  </div>
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+          {% if user.is_authenticated %}
+          <!-- <a href = "cart" id = "popcart" type="button" class="btn btn-primary mx-2">Cart</a> -->
+          <!-- Example split danger button -->
+              <!-- Example single danger button -->
+            <div class="btn-group">
+              <button type="button" id = "popcart" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Cart
+              </button>
+              <ul class="dropdown-menu">
+              {% for key, value in myitems.items %}
+                    
+                {% for x in key %}
+                <li>{{x.product_name}}: {{value}} </li>  
+                {% endfor %}
+              {% endfor %}
+                <li><hr class="dropdown-divider"></li>
+                <li> Total price: {{totalprice}}</li>
+                <li><a style= "font-size: 15px; margin-left: 20px; width: 100px;" class="dropdown-item" href="#">Checkout</a></li>
+                
+
+              </ul>
+            </div>
+        {% endif %}
+          <form action = "/shop/Pl" method = "POST" class="d-flex" role="search" style = "width: 500px">
+            {% csrf_token %}
+            <input name = "searchtxt" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- Signup Modal.  -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color: transparent; border: none;">
+      <div class="modal-body">
+              <div id="login-box">
+                  <div class="left">
+                    <h1>Sign up</h1>
+                  <form action= "/shop/signup" method = "POST">
+    
+                    <input type="text" name="fname" placeholder="firstname" />
+                    <input type="text" name="lname" placeholder="lastname" />
+                    <input type="text" name="username" placeholder="username" />
+                    <input type="text" name="email" placeholder="E-mail" />
+                    <input type="text" name="phonenumber" placeholder="Mobile number" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="re-password" placeholder="Retype password" />
+                    <input type="submit" name="signup_submit" value="Sign me up" />
+                    {% csrf_token %}
+                  </form>
+                  </div>
+
+                  <div class="right">
+                    <span class="loginwith">Sign in with<br />social network</span>
+                    
+                    <button class="social-signin facebook">Log in with facebook</button>
+                    <button class="social-signin google">Log in with Google+</button>
+                  </div>
+                  <div class="or">OR</div>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- modal ends  -->
+
+  <div class="container1">
+    <div class="textbox1">
+      <p>for your picture perfect planning ! </p> 
+      <div class="container2">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Camera's and equipments </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">plan your shoot! </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <!-- cameras section  -->
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+              <!-- carousel -->
+                  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" style = "height: 400px;">
+                    <div class="carousel-indicators">
+
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                      {% for i in range %}
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-label="Slide {{forloop.counter}}"></button>
+                      {% endfor %}                  
+                    </div>
+                    <div class="carousel-inner">
+                        <div id = "carouselactive" class="carousel-item active">
+                                <img class = "camsecimg" src="{%static 'shop/camsec.jpg' %}" alt=""> 
+                                <div class="text1"> Browse our wide range of</div>
+                                <div class="text2"> Camera's </div>
+                                <div class="text3">and Equipments. </div>
+                        </div>
+
+                      <div id = "carouselitem" class="carousel-item">
+                                <div class="card">
+                                  <img src="/media/{{myproducts.0.product_image}}" alt="" class="card-img">
+                                  <div class="card-inner">
+                                    <img class = "cardimg"src="" alt="">
+                                    <h> {{myproducts.0.product_name|truncatechars:10}}</h>
+                                    <p> {{myproducts.0.product_desc|truncatechars:40}} ..</p>
+                                  </div>
+                                  <a href = "/shop/page?pname={{myproducts.0.product_name}}" id = "cardtag" type="button" class="btn btn-outline-primary"> Learn more </a>
+                              </div>
+                              {% for x in myproducts|slice:"1:6" %}
+
+                                  <div class="card">
+                                    <img src="/media/{{x.product_image}}" alt="" class="card-img">
+                                    <div class="card-inner">
+                                      <img class = "cardimg"src="" alt="">
+                                      <h>{{x.product_name|truncatechars:10}}</h>
+                                      <p> {{ x.product_desc|truncatechars:40}} </p>
+                                    </div>
+                                    <a id = "cardtag" type="button" class="btn btn-outline-primary" href = "/shop/page?pname={{x.product_name}}"> Learn more </a>
+                                </div>
+                            {% if forloop.counter|divisibleby:2 and forloop.counter > 0 and not forloop.last%}
+                              
+                              </div>
+                              <div id = "carouselitem" class="carousel-item">
+                            {% endif %}
+                            {% endfor %}
+                          </div>
+                    </div>
+                      
+                    <button style = "width: 4%;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button style = "width: 4%;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+             </div>
+            <!-- shoot section  -->
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> 
+                <div class="txt1">Need a photographer? <br> Just tell us where and when. </div> 
+                <div class="infotab">
+                    <div class="headervalue">
+                      <a class="tablinks" id = "searchtab" onclick="openCity(event, 'Searchtab')">
+                          <img style = "display: inline-block;" src="{% static 'shop/search.png' %}" alt=""> 
+                          <h1> Search </h1> 
+                      </a>
+                      <a  class = "tablinks" id="desttab" onclick="openCity(event, 'destinationtab')">
+                        <img style = "display: inline-block;" src="{% static 'shop/dest.png' %}" alt=""> 
+                          <h1> Destinations </h1>
+                      </a>
+                      <a  class = "tablinks" id ="featuretab" onclick="openCity(event, 'Featuretab')">
+                        <img style = "display: inline-block;" src="{% static 'shop/feature.png' %}" alt=""> 
+                        <h1> Featured </h1> 
+                      </a>
+                    </div>
+                    <div id = "Searchtab" class="headercontainers">
+                      <div class="inner_header" id = "ih_1">
+                       <h1> Search destinations </h1>
+                      </div>
+                      <div class="inner_header" id = "ih_2">
+                        <h1> Packages. </h1> 
+                      </div>
+                    </div>
+                    <div id = "destinationtab" class="headercontainers">
+                        <div class="leftcont">
+                            <a class = "d-lanchor active" id = "d-l1" onclick="opendest(event, 'rc1')"> 
+                              Best selling </a>
+                            <a class = "d-lanchor" id = "d-l2" onclick="opendest(event, 'rc2')"> 
+                              Emerging </a>
+                        </div>
+                        <div class="rightcont" id = "rc1">
+                          <a href="" class = "d-lanchor"> right container 1  </a>
+                          <a href="" class = "d-lanchor"> Emerging </a>
+                        </div>
+                        <div class="rightcont" id = "rc2">
+                          <a href="" class = "d-lanchor"> Right container 2 </a>
+                          <a href="" class = "d-lanchor"> Emerging </a>
+                        </div>
+                    </div>
+                    <div id = "Featuretab" class="headercontainers">
+
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+    <div class="textbox2">
+      <h> One stop destination,</h> 
+    </div>
+  </div>
+
+  <!-- categories display  -->
+
+ <div class="category_container">
+  <div class="btn-group">
+    <button type="button" class="btn btn-secondary" id="cat_button">Shop From our wide range of Categories</button>
+    <button style = "background-color: aqua; border: none; font-size: 20px;" type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+      <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+    <ul id = "cat_dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+      <div class="dropdown_container" id = "dc1">
+        {% for x in Categories %}
+        <li><a class="dropdown-item" href="/shop/PV2?cname={{x.cat_name}}">{{x.cat_name}}</a></li>
+        {% if forloop.counter|divisibleby:2 and not forloop.last %}
+         </div>
+         <div class="dropdown_container">
+        {% endif %}
+        <!-- <li><a class="dropdown-item" href="#">{{x.cat_name}}</a></li> -->
+        {% endfor %}
+        </div>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </div>
+ </div>
+ 
+ <div class="brand_container">
+  
+  <div class="bcontainer1"> <a href="http://127.0.0.1:8000/shop/PV?b_name=Nikon"><img src='{% static "shop/Nikon.png" %}' alt="" class="First_img"></a></div>
+  <div class="bcontainer2"> <a href="http://127.0.0.1:8000/shop/PV?b_name=Cannon"><img src='{%static "shop/Cannon.png" %}' alt="" class="Second_img"></a></div>
+  <div class="bcontainer3"> <a href="http://127.0.0.1:8000/shop/PV?b_name=RED"><img src='{%static "shop/RED.png" %}' alt="" class="Second_img"></a></div>
+
+ </div>
+
+  <!-- text animation conatiner  -->
+  <div id="container">
+    <video id = "Video" autoplay muted>
+      <source src = '{%static "shop/Video.mp4" %}' type = "video/mp4">
+    </video>
+    <span id="text1" class="animate-charcter"></span>
+    <span id="text2" class="animate-charcter"></span>
+  </div>
+
+  <svg id="filters">
+      <defs>
+          <filter id="threshold">
+              <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 255 -140" />
+          </filter>
+      </defs>
+  </svg>
+
+      <!-- FOOTER START -->
+      <div class="footer">
+        <div class="contain">
+        <div class="col">
+          <h1>Company</h1>
+          <ul>
+            <li>About</li>
+            <li>Mission</li>
+            <li>Services</li>
+            <li>Social</li>
+            <li>Get in touch</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>Products</h1>
+          <ul>
+            <li>About</li>
+            <li>Mission</li>
+            <li>Services</li>
+            <li>Social</li>
+            <li>Get in touch</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>Accounts</h1>
+          <ul>
+            <li>About</li>
+            <li>Mission</li>
+            <li>Services</li>
+            <li>Social</li>
+            <li>Get in touch</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>Resources</h1>
+          <ul>
+            <li>Webmail</li>
+            <li>Redeem code</li>
+            <li>WHOIS lookup</li>
+            <li>Site map</li>
+            <li>Web templates</li>
+            <li>Email templates</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>Support</h1>
+          <ul>
+            <li>Contact us</li>
+            <li>Web chat</li>
+            <li>Open ticket</li>
+          </ul>
+        </div>
+        <div class="col social">
+          <h1>Social</h1>
+          <ul>
+            <li><img src="{%static 'shop/fblogo.png' %}" width="32" style="width: 32px;"></li>
+            <li><img src="{%static 'shop/googlelogo.jpg' %}" width="32" style="width: 32px;"></li>
+            <li><img src="{%static 'shop/instalgo.jpg' %}" width="32" style="width: 32px;"></li>
+          </ul>
+        </div>
+      <div class="clearfix"></div>
+      </div>
+      </div>
+
+
+
+<!-- Sticky navbar js -->
+    <script>
+          // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+
+        // Get the navbar
+        var navbar = document.getElementById("navbar");
+
+        // Get the offset position of the navbar
+        var sticky = navbar.offsetTop;
+
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+          } else {
+            navbar.classList.remove("sticky");
+          }
+        }
+    </script>
+
+  <!-- Js for the text animations.  -->
+  <script>
+    const elts = {
+        text1: document.getElementById("text1"),
+        text2: document.getElementById("text2")
+    };
+    
+    const texts = [
+        "BUY",
+        "OR",
+        "RENT",
+        "FROM",
+        "THE",
+        "BEST",
+        "THERE",
+        "IS",
+    ];
+    
+    const morphTime = 1;
+    const cooldownTime = 1;
+    
+    let textIndex = texts.length - 1;
+    let time = new Date();
+    let morph = 0;
+    let cooldown = cooldownTime;
+    
+    elts.text1.textContent = texts[textIndex % texts.length];
+    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    
+    function doMorph() {
+        morph -= cooldown;
+        cooldown = 0;
+    
+        let fraction = morph / morphTime;
+    
+        if (fraction > 1) {
+            cooldown = cooldownTime;
+            fraction = 1;
+        }
+    
+        setMorph(fraction);
+    }
+    
+    function setMorph(fraction) {
+        elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+        fraction = 1 - fraction;
+        elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+    
+        elts.text1.textContent = texts[textIndex % texts.length];
+        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    }
+    
+    function doCooldown() {
+        morph = 0;
+    
+        elts.text2.style.filter = "";
+        elts.text2.style.opacity = "100%";
+    
+        elts.text1.style.filter = "";
+        elts.text1.style.opacity = "0%";
+    }
+    
+    function animate() {
+        requestAnimationFrame(animate);
+    
+        let newTime = new Date();
+        let shouldIncrementIndex = cooldown > 0;
+        let dt = (newTime - time) / 1000;
+        time = newTime;
+    
+        cooldown -= dt;
+    
+        if (cooldown <= 0) {
+            if (shouldIncrementIndex) {
+                textIndex++;
+            }
+    
+            doMorph();
+        } else {
+            doCooldown();
+        }
+    }
+    
+    animate();
+</script>
+
+<script> 
+function openCity(evt, tabname) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("headercontainers");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabname).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<script>
+ function opendest(evt, tabname) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("rightcont");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("d-lanchor");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabname).style.display = "inline-block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>

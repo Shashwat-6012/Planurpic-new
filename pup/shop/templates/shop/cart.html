@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'shop/footer.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Cart</title>
+
+    <style>
+        .body {
+            background-color: #070617;
+        }
+          #navbar {
+                /* width: 100vw; */
+                grid-area: navbar;
+                position: sticky;
+                z-index: 1;
+            }
+            /* Sticky class for navbar  */
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+            @media (min-width: 1025px) {
+                .h-custom {
+                height: 190vh !important;
+                }
+                }
+
+                .card-registration .select-input.form-control[readonly]:not([disabled]) {
+                font-size: 1rem;
+                line-height: 2.15;
+                padding-left: .75em;
+                padding-right: .75em;
+                }
+
+                .card-registration .select-arrow {
+                top: 13px;
+                }
+
+                .bg-grey {
+                background-color: #eae8e8;
+                }
+
+                @media (min-width: 992px) {
+                .card-registration-2 .bg-grey {
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+                }
+                }
+
+                @media (max-width: 991px) {
+                .card-registration-2 .bg-grey {
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                }
+                }
+                .add_but{
+                  width: 39px;
+                  height: 35px;
+                  margin: 10px;
+                  font-size: 14px;
+                }
+    </style>
+</head>
+<body>
+    {% load static %}
+
+    {% for message in messages %}
+        <div id = "mssg" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="z-index: 2;">
+          <strong>Message: </strong> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+  
+      <nav class="navbar navbar-expand-lg bg-dark" id = "navbar" >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style = "color: white">Planurpic</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/shop">Home</a>
+              </li>
+              {% if user.is_authenticated %}
+              <div class="dropdown">
+                <button style="background-color: #070617; border: none;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Welcome {{request.user.first_name}}
+                </button>
+                <div id = "drop_container" class="dropdown-menu">
+                  <li><a style = "font-size: 25px;" class="dropdown-item" href="#">Your Account</a></li>
+                  <li><a class="dropdown-item" href="#">Your Orders</a></li>
+                  <li><a class="dropdown-item" href="#">Your Wish List</a></li>
+                  <li><a class="dropdown-item" href="#">Your Cart</a></li>
+                  <li><a class="dropdown-item" href="Sell">Your Seller Account</a></li>
+                  <li><a class="dropdown-item" href="logout">signout</a></li>
+                </div>
+              </div>
+              {% else %}
+              <li class="nav-item">
+                <button type="button" class="btn btn-success mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Signup
+                </button>
+              </li>
+              <li class="nav-item dropdown">
+                <div class="dropdown">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    Login
+                  </button>
+                  <form  action = "login" method = "post" class="dropdown-menu p-4">
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormEmail2" class="form-label">username</label>
+                      <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Username" name="loginusername">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" name="loginpassword">
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                        <label class="form-check-label" for="dropdownCheck2">
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                  </form>
+                </div>
+              </li>
+              {% endif %}
+            </ul>
+            <form class="d-flex" role="search" style = "width: 500px">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+              <a href = "" id = "popcart" type="button" class="btn btn-primary mx-2">Cart</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!-- Signup Modal.  -->
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: transparent; border: none;">
+        <div class="modal-body">
+                <div id="login-box">
+                    <div class="left">
+                      <h1>Sign up</h1>
+                    <form action= "/shop/signup" method = "POST">
+      
+                      <input type="text" name="fname" placeholder="firstname" />
+                      <input type="text" name="lname" placeholder="lastname" />
+                      <input type="text" name="username" placeholder="username" />
+                      <input type="text" name="email" placeholder="E-mail" />
+                      <input type="text" name="phonenumber" placeholder="Mobile number" />
+                      <input type="password" name="password" placeholder="Password" />
+                      <input type="password" name="re-password" placeholder="Retype password" />
+                      <input type="submit" name="signup_submit" value="Sign me up" />
+                      {% csrf_token %}
+                    </form>
+                    </div>
+  
+                    <div class="right">
+                      <span class="loginwith">Sign in with<br />social network</span>
+                      
+                      <button class="social-signin facebook">Log in with facebook</button>
+                      <button class="social-signin google">Log in with Google+</button>
+                    </div>
+                    <div class="or">OR</div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal ends here  -->
+
+  <!-- Cart starts here  -->
+  <section class="h-150 h-custom" style="background-color: #070617;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h6 class="mb-0 text-muted">3 items</h6>
+                    </div>
+                    {% for key, value in myitems.items %}
+                    
+                       {% for x in key %}
+                          <hr class="my-4">
+        
+                          <div class="row mb-4 d-flex justify-content-between align-items-center">
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                              <img
+                                src="/media/{{x.product_image}}"
+                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                              <h6 class="text-muted">{{x.product_category}}</h6>
+                              <h6 class="text-black mb-0">{{x.product_name}}</h6>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                              <button class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <i class="fas fa-minus"></i>
+                              </button>
+                              <form action = "/shop/Di" method = "POST" class = "form{{x.product_name}}">
+                                {% csrf_token %}
+                              <input style="display: none;" name = "prod_name" type="text" value="{{x.product_name}}">
+                              <input  min="0" name="quantity" value="{{value}}" type="number"
+                                class="form-control form-control-sm q{{x.product_name}}" />
+                                <button id = "pr{{x.product_name}}" type="submit" class="btn btn-info add_but">-+</button>
+                              </form>
+                              <button  class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <i class="fas fa-plus"></i>
+                              </button>
+                            
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                              <h6 class="mb-0">₹ {% widthratio x.product_price 1 value %}.0</h6>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                              <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                            </div>
+                          </div>
+                          {% endfor %}
+                    {% endfor %}
+                    <hr class="my-4">
+  
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="/shop" class="text-body"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+                  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">items {{totalcount}} </h5>
+                      <h5>₹ {{totalprice}}</h5>
+                    </div>
+  
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+  
+                    <div class="mb-4 pb-2">
+                      <select class="select">
+                        <option value="1">Standard-Delivery- €5.00</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                      </select>
+                    </div>
+  
+                    <h5 class="text-uppercase mb-3">Give code</h5>
+  
+                    <div class="mb-5">
+                      <div class="form-outline">
+                        <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplea2">Enter your code</label>
+                      </div>
+                    </div>
+  
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>₹ {{totalprice}}</h5>
+                    </div>
+  
+                    <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Checkout</button>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart ends here  -->
+
+  <!-- footer start here  -->
+  <div class="footer">
+    <div class="contain">
+    <div class="col">
+      <h1>Company</h1>
+      <ul>
+        <li>About</li>
+        <li>Mission</li>
+        <li>Services</li>
+        <li>Social</li>
+        <li>Get in touch</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Products</h1>
+      <ul>
+        <li>About</li>
+        <li>Mission</li>
+        <li>Services</li>
+        <li>Social</li>
+        <li>Get in touch</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Accounts</h1>
+      <ul>
+        <li>About</li>
+        <li>Mission</li>
+        <li>Services</li>
+        <li>Social</li>
+        <li>Get in touch</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Resources</h1>
+      <ul>
+        <li>Webmail</li>
+        <li>Redeem code</li>
+        <li>WHOIS lookup</li>
+        <li>Site map</li>
+        <li>Web templates</li>
+        <li>Email templates</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Support</h1>
+      <ul>
+        <li>Contact us</li>
+        <li>Web chat</li>
+        <li>Open ticket</li>
+      </ul>
+    </div>
+    <div class="col social">
+      <h1>Social</h1>
+      <ul>
+        <li><img src="{%static 'shop/fblogo.png' %}" width="32" style="width: 32px;"></li>
+        <li><img src="{%static 'shop/googlelogo.jpg' %}" width="32" style="width: 32px;"></li>
+        <li><img src="{%static 'shop/instalgo.jpg' %}" width="32" style="width: 32px;"></li>
+      </ul>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+  </div>
+
+  <!-- footer ends here  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+ 
+</body>
+</html>

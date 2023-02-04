@@ -1,0 +1,12 @@
+Django sequence for making and adding tables for the database. 
+
+1.) migrate all the pending migrations
+2.) Create model class in the models.py for the table
+(look up the documentation for further syntax) 
+3.) Add the app as proper appname.apps.(appname)Config
+4.) python manage.py makemigrations (for the newly created table) 
+5.) What are migrations? 
+--> migrations are pending changes that are stored in the apps migration folder
+    to change the database the migrations have to be applied. 
+6.) again run python manage.py migrate to apply the create table in the database
+7.) register the model created in the admin.py of the parent project (not the app)

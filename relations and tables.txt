@@ -1,0 +1,13 @@
+Plan ur pics Database schema. 
+# Tables.
+-> Products(product_id, product_name, product_category, product_desc, product_price, product_image)
+-> Purchased(purchase_id, product_id, product_name, no_of_items)
+-> users(user_id, user_name, user_email, user_status, user_password, cart_id)
+-> cart(cart_id, product_id)
+-> BussinessUser(user_id, Bussiness_name, Bussiness_pan, Buss_address, contact_no, Bussiness_type (Trading, Photography))
+
+
+# Relations
+user-one to one-cart
+cart-one to many-products
+user-many to many-purchase
