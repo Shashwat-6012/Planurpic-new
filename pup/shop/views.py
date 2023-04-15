@@ -166,11 +166,16 @@ def Sellerpage(request):
     Cat = category.objects.all()
     for x in CU:
         U_seller = x.user_buyer
+    for y in BU:
+        B_type = y.Business_type
     User_product = Product.objects.filter(product_seller = un) # Products uploaded by the user
     print(User_product)
     params = {'user': un, 'CU': CU, 'Usp': User_product, 'Buss_user': BU, 'cat': Cat}
     if U_seller == True:
-        return render(request, 'shop/Profile.html', params)
+        if(B_type == 'Photography'):
+            return render(request, 'shop/PhotoProfile.html', params)
+        else: 
+            return render(request, 'shop/Profile.html', params)
     else:
         return render(request, 'shop/Sellerpage.html', params)
 
@@ -286,3 +291,62 @@ def Productentry(request):
             return HttpResponse("product added failed")
         else:
             return redirect('/shop/Sell')
+        
+def Createbuss(request):
+    un = request.user.id
+    myuser = User.objects.get(id = un)
+    CU = CustomUser.objects.filter(user = un)
+    for x in CU:
+        x.user_buyer = True
+        x.save()
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        contact = request.POST.get('contact')
+        type = request.POST.get('cat')
+
+        BU = BusinessUser(user = myuser, Business_name = name, Business_contact = contact, Business_email = email, Business_address = address, Business_type = type)
+        if BU.save():
+            return HttpResponse("Invalid credentials. ")
+        else:
+            return redirect(Sellerpage)
+        
+def Checkout(request):
+    un = request.user.id
+    mycart = Cart.objects.filter(user=un)
+    myitems = {}
+    myprod = {}
+    tc = 0  # Product count
+    tp = 0  # Total price of the cart. 
+    for x in mycart:
+        itemslist = x.cart_items.split(",")
+    print(itemslist)
+    ic = 0
+    for y in itemslist:
+        for z in itemslist:
+            if(y == z):
+                ic = ic+ 1
+        myitems.update({y: ic})
+        ic = 0
+
+    for x in myitems:
+        if(x != 'NA'): 
+            myprod.update({Product.objects.filter(product_name__iexact = x): myitems[x]})
+    print(myprod)
+    for i in myprod.values():
+        tc = tc + i
+    for i in myprod:
+        for z in i:
+            tp = tp + z.product_price*myprod[i]
+    
+    params = {'myitems': myprod, 'totalcount': tc, 'totalprice': tp}
+    return render(request, 'shop/Checkout.html', params)
+
+
+def Packagedisplay(request):
+    if(request.method == 'POST'):
+        dest = request.POST.get("dest")
+        start_date = request.POST.get("s_date")
+        end_date = request.POST.get("e_date")
+    return render(request, 'shop/tours.html')

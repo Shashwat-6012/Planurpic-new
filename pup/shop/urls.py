@@ -14,5 +14,8 @@ urlpatterns = [
     path("Atc", views.Addtocart, name = "Addtocart"), # redirects to Add to cart view 
     path("Di", views.deleteitem, name = "Deleteincart"),
     path("Pl", views.Productlist, name = "Productlist"),
-    path("PE", views.Productentry, name = "productentry") #logic for product entry in DB. 
+    path("PE", views.Productentry, name = "productentry"), #logic for product entry in DB. 
+    path("BE", views.Createbuss, name = "businessentry"),
+    path("Checkout", views.Checkout, name = "Checkout"),
+    path("PKG", views.Packagedisplay, name = "Packages")   #it will display the packages searched for. 
 ]

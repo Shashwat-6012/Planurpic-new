@@ -157,7 +157,7 @@
 
 {% for x in prod %}
 <div class="container">
- <img class = "product_box" src="{% static 'shop/productbox.jpg' %}" alt=""> 
+ <a href = "page?pname={{x.product_name}}" > <img class = "product_box" src="{% static 'shop/productbox.jpg' %}" alt="">  </a>
  <img class = "product_img" src="/media/{{x.product_image}}" alt="">
  <h> {{x.product_name}}</h>
  <p> Ratings: 3.9/5.0 </p>

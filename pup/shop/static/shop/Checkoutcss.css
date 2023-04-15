@@ -1,0 +1,166 @@
+:root {
+  --black: #525252;
+  --orange: #FFB000;
+  --white: #F7FBFC;
+  --grey: #C2C2C2;
+}
+
+#page {
+  width: 100%;
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main {
+  width: 41.875rem;
+  height: 18.4375rem;
+  background-color: var(--black);
+  font-family: "Questrial", sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.product-container {
+  width: 21.25rem;
+  height: 17.1875rem;
+  background-color: var(--orange);
+  position: relative;
+  top: -2.7rem;
+  left: -4.4rem;
+  overflow: hidden;
+}
+.product-container h2 {
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.product-container img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card {
+  width: 17.5rem;
+  height: 11rem;
+  background-color: var(--white);
+  border-radius: 0.7rem;
+  padding: 1.3rem 1.6rem;
+  position: absolute;
+  top: -2.75rem;
+  right: 4.4rem;
+}
+.card:after {
+  content: "";
+  display: block;
+  width: 17.5rem;
+  height: 11rem;
+  background-color: #2A2A2A;
+  border-radius: 0.7rem;
+  position: absolute;
+  top: 2.7rem;
+  right: -1.5rem;
+  transform: rotate(8deg);
+  z-index: -1;
+}
+
+.chip {
+  width: 3rem;
+  height: 2.2rem;
+  margin-bottom: 0.7rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+form label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.55rem;
+  color: #C2C2C2;
+  margin-top: 0.35rem;
+}
+form label[for=name] {
+  width: 72%;
+}
+form label[for=date] {
+  width: 22%;
+  margin-left: 6%;
+}
+form label[for=cvc] {
+  width: 15%;
+  position: absolute;
+  right: 7%;
+  bottom: -3.9rem;
+}
+form label[for=remember] {
+  width: auto;
+  height: 2.8rem;
+  font-size: 0.7rem;
+  position: absolute;
+  left: -1.5rem;
+  bottom: -10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+form label[for=remember] input {
+  margin-right: 0.5rem;
+  filter: invert(100%) hue-rotate(30deg) brightness(1.7);
+  color: red;
+  height: 1rem;
+  width: 1rem;
+}
+form input {
+  border: none;
+  border-bottom: 1px solid var(--grey);
+  outline: none;
+  background-color: transparent;
+  font-size: 1.1rem;
+  padding: 0.2rem 0;
+}
+form input#cvc {
+  color: white;
+}
+.fbutton {
+  height: 2.8rem;
+  width: 11.8rem;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: -10rem;
+  left: 10rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.fbutton .fa-angle-right {
+  font-size: 2rem;
+  position: absolute;
+  left: 72%;
+}
+
+.price-container {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 3.4rem;
+  display: inline-block;
+}
+.price-container strong {
+  font-size: 2.2rem;
+  color: white;
+}
+.price-container small {
+  font-size: 0.6rem;
+  color: var(--grey);
+}/*# sourceMappingURL=Checkoutcss.css.map */

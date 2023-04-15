@@ -18,6 +18,18 @@
     <link rel="stylesheet" href="{% static 'shop/footer.css' %}">
 
     <title>Home</title>
+
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <!-- <link type="text/css" rel="stylesheet" href="{% static 'shop/Shootcss/bootstrap.min.css' %}" /> -->
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'shop/Shootcss/style.css' %}" />
+
+
     <style>
       body {
         display: grid;
@@ -424,54 +436,62 @@
                     </button>
                   </div>
              </div>
-            <!-- shoot section  -->
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> 
-                <div class="txt1">Need a photographer? <br> Just tell us where and when. </div> 
-                <div class="infotab">
-                    <div class="headervalue">
-                      <a class="tablinks" id = "searchtab" onclick="openCity(event, 'Searchtab')">
-                          <img style = "display: inline-block;" src="{% static 'shop/search.png' %}" alt=""> 
-                          <h1> Search </h1> 
-                      </a>
-                      <a  class = "tablinks" id="desttab" onclick="openCity(event, 'destinationtab')">
-                        <img style = "display: inline-block;" src="{% static 'shop/dest.png' %}" alt=""> 
-                          <h1> Destinations </h1>
-                      </a>
-                      <a  class = "tablinks" id ="featuretab" onclick="openCity(event, 'Featuretab')">
-                        <img style = "display: inline-block;" src="{% static 'shop/feature.png' %}" alt=""> 
-                        <h1> Featured </h1> 
-                      </a>
-                    </div>
-                    <div id = "Searchtab" class="headercontainers">
-                      <div class="inner_header" id = "ih_1">
-                       <h1> Search destinations </h1>
-                      </div>
-                      <div class="inner_header" id = "ih_2">
-                        <h1> Packages. </h1> 
-                      </div>
-                    </div>
-                    <div id = "destinationtab" class="headercontainers">
-                        <div class="leftcont">
-                            <a class = "d-lanchor active" id = "d-l1" onclick="opendest(event, 'rc1')"> 
-                              Best selling </a>
-                            <a class = "d-lanchor" id = "d-l2" onclick="opendest(event, 'rc2')"> 
-                              Emerging </a>
-                        </div>
-                        <div class="rightcont" id = "rc1">
-                          <a href="" class = "d-lanchor"> right container 1  </a>
-                          <a href="" class = "d-lanchor"> Emerging </a>
-                        </div>
-                        <div class="rightcont" id = "rc2">
-                          <a href="" class = "d-lanchor"> Right container 2 </a>
-                          <a href="" class = "d-lanchor"> Emerging </a>
-                        </div>
-                    </div>
-                    <div id = "Featuretab" class="headercontainers">
 
+            <!-- shoot section  -->
+
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> 
+              
+              <!-- booking section  -->
+              <div id="booking" class="section">
+                <div class="section-center">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-7 col-md-push-5">
+                        <div class="booking-cta">
+                          <h1>Make your reservation</h1>
+                          <p>Need a photographer, <br>
+                            Just tell us where and When. <br>
+                            <br>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-md-pull-7">
+                        <div class="booking-form">
+                          <form action="PKG" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <span class="form-label">Your Destination</span>
+                              <input name = "dest" class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                  <span class="form-label">Check In</span>
+                                  <input name = "s_date" class="form-control" type="date" required>
+                                </div>
+                              </div>
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                  <span class="form-label">Check out</span>
+                                  <input name = "e_date" class="form-control" type="date" required>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="form-btn">
+                              <button class="submit-btn">Check availability</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+
+
             </div>
-            
+            <!-- shoot section ends  -->
           </div>
         </div>
     </div>
